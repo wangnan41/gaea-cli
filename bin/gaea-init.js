@@ -91,12 +91,11 @@ function go(){
 				default:`A project named ${context.name}`
 			}
 		]).then(answer => {
-			return {
-				...context,
-				metadata:{
-					...answer
-				}
-			}
+			let obj= Object.assign({},context);
+			let metadata = Object.assign({},answer);
+			obj.metadata = metadata;
+			return obj;
+			
 		}).catch(err => {
 			return Promise.reject(err)
 		})
