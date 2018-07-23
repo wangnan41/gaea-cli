@@ -89,6 +89,16 @@ function go(){
 				name:'projectDescription',
 				message:'项目简介',
 				default:`A project named ${context.name}`
+			},
+			{
+				name:'uploadHost',
+				message:'上传服务器地址',
+				default:`127.0.0.1`
+			},
+			{
+				name:'author',
+				message:'作者',
+				default:`佚名`
 			}
 		]).then(answer => {
 			let obj= Object.assign({},context);
