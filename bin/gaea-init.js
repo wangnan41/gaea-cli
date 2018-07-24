@@ -64,21 +64,11 @@ function go(){
 		if(projectRoot  !=  '.'){
 			fs.mkdirSync(projectRoot)
 		}
-		return download(projectRoot).then(target=>{
-			return{
-				name:projectRoot,
-				root:projectRoot,
-				downloadTemp:target
-			}
-		})
-		
-	}).then(context => {
-
 		return inquirer.prompt([
 			{
 				name:'projectName',
 				message:'项目名称',
-				default:context.name
+				default:'gaea-init'
 			},
 			{
 				name:'projectVersion',
@@ -88,24 +78,63 @@ function go(){
 			{
 				name:'projectDescription',
 				message:'项目简介',
-				default:`A project named ${context.name}`
+				default:`A project named gaea-init`
 			},
 			{
 				name:'uploadHost',
 				message:'上传服务器地址',
-				default:`127.0.0.1`
+				default:`你知道的73服务器`
 			},
 			{
 				name:'author',
 				message:'作者',
 				default:`佚名`
+			},
+			{	
+				name:'bucket',
+				type:'checkbox',
+				message:'第三方依赖库(多选)',
+				choices:
+				[{
+					name:'vue',
+					checked:true
+				},{
+					name:'axios',
+					checked:true
+				},{
+					name:'vue-router',
+					checked:true
+				},{
+					name:'qs',
+					checked:true
+				},{
+					name:'vuex',
+					checked:false
+				}]
 			}
 		]).then(answer => {
-			let obj= Object.assign({},context);
+			let obj= {};
 			let metadata = Object.assign({},answer);
 			obj.metadata = metadata;
 			return obj;
 			
+		}).then((obj) => {
+			
+			let hasVuex = 1;
+
+			if(obj.metadata.bucket.indexOf('vuex')!=-1){
+				hasVuex = 2;
+			}
+			console.log(hasVuex);
+			return download(hasVuex,projectRoot).then(target=>{
+				
+				obj.name = projectRoot;
+				obj.root = projectRoot;
+				obj.downloadTemp = target;
+				console.log(obj);
+				return obj;
+			})
+		
 		}).catch(err => {
 			return Promise.reject(err)
 		})
