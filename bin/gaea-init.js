@@ -47,7 +47,7 @@ if(list.length){
 		}
 
 		]).then(answer =>{
-			console.log(answer.buildInCurrent);
+			
 			return Promise.resolve(answer.buildInCurrent ? '.' : projectName);
 		})
 
@@ -125,13 +125,11 @@ function go(){
 			if(obj.metadata.bucket.indexOf('vuex')!=-1){
 				hasVuex = 2;
 			}
-			console.log(hasVuex);
 			return download(hasVuex,projectRoot).then(target=>{
 				
 				obj.name = projectRoot;
 				obj.root = projectRoot;
 				obj.downloadTemp = target;
-				console.log(obj);
 				return obj;
 			})
 		
@@ -144,7 +142,7 @@ function go(){
 	}).then((res)=>{
 		
 		console.log(logSymbols.success,chalk.green('创建成功:)'));
-		console.log(chalk.green(`cd ${projectName}\nnpm install\nnpm run dll\nnpm run dev`));
+		console.log(chalk.green(`cd ${projectName}\nnpm install\nnpm run dll(预编译第三方依赖库)\nnpm run dev(本地开发)\nnpm run build(本地编译打包)\nnpm run upload(本地编译打包加上传测试服务器)`));
 	}).catch(err => {
 		console.error(logSymbols.error,chalk.red(`创建失败：${err.message}`));
 	})
