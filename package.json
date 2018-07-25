@@ -1,6 +1,6 @@
 {
   "name": "gaea-cli",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "vue cli",
   "main": "index.js",
   "bin": {
@@ -16,9 +16,9 @@
     "url": "https://github.com/wangnan19900401/gaea-cli/issues"
   },
   "dependencies": {
-   
     "chalk": "^2.4.1",
     "commander": "^2.16.0",
+    "download-git-repo": "^1.0.2",
     "glob": "^7.1.2",
     "handlebars": "^4.0.11",
     "inquirer": "^6.0.0",
