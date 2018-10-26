@@ -97,9 +97,6 @@ program.version(package.version,'-v,--version')
 							message:'第三方依赖库(多选)',
 							choices:
 							[{
-								name:'vue',
-								checked:true
-							},{
 								name:'axios',
 								checked:true
 							},{
